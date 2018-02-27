@@ -10,8 +10,6 @@ class Container extends React.Component{
 
     return (
       <div className = "container">
-      
-      {console.log('GOT TO CONTAINER props',this.props)}
         <Photo photos = {this.props.photos}/>
       </div>
     )

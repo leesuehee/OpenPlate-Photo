@@ -1,17 +1,86 @@
+body {
+  background-color: #000
+}
 .photomod {
-  background-color: #ff0;
-  height: 500px;
-  width: 800px
+  background-color: #fff;
+  height: 800px;
+  width: 605px;
+  margin: center;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid rgb(167, 160, 160);
+  margin: 1em 0;
+  padding: 0;
 }
 .container {
-  background-color: #0ff;
-  height: 300px;
-  width: 600px 
+  position: relative;
+  top: 10px;
+  height: 400px; 
+ width: 600px; 
+  /* height: '25%';
+  width: '35%'; */
+  overflow: hidden;
+  /* margin-left:auto;  do margin adjustments here   */
+}
+.photogallery{
+  margin:auto
 }
 .photo {
   background-color: #fff;
-  float:left;
-  height: 125px;
-  width: 125px;
-  margin: 5px
+  float: left;
+  position: relative;
+  margin: 1px;
+  /* height: 90px;
+  width: 90px; */
 }
+.photo .text{
+  position: absolute;
+  background-color: #fff;
+  padding: 1px 3px;
+  border-radius: 10px;
+  top: 5px;
+  left: 5px;
+  visibility: hidden;
+}
+
+.photo:hover .text {
+  visibility: visible;
+}
+.photoheader {
+  font-size: 20px;
+  margin-left: 10px;
+}
+.viewmore {
+  float: right;
+  position: relative;
+  top: 8px;
+  right: 5px;
+  color: red
+}
+img {
+  object-fit: cover;
+  cursor: pointer
+}
+
+.more {
+  filter: brightness(45%);
+  position:relative
+}
+.more:hover {
+  filter: brightness(20%)
+} 
+
+.excess {
+  position: absolute;
+  top:200px;
+  left:520px;
+  color:white;
+  font-size:17px;
+}
+
+
+
+

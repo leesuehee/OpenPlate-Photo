@@ -987,7 +987,7 @@ var PhotoModule = function (_React$Component) {
   //     this.setState({
   //       carosel: !this.state.carosel
   //     });
-  //     // if carosel is false regular photo gallery is displayed
+  //     // if carose1l is false regular photo gallery is displayed
   //     // else carosel view will render.. will work on photo gallery clone first
   //   }
 
@@ -1001,14 +1001,15 @@ var PhotoModule = function (_React$Component) {
         _react2.default.createElement(
           'span',
           { className: 'photoheader' },
-          'Photos'
+          this.state.dupePhotos.length,
+          ' Photos'
         ),
         _react2.default.createElement(
           'span',
           { className: 'viewmore' },
           'View more'
         ),
-        console.log('made it past photomod'),
+        _react2.default.createElement('hr', null),
         _react2.default.createElement(_Container2.default, { photos: this.state.dupePhotos })
       );
     }
@@ -18368,7 +18369,6 @@ var Container = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'container' },
-        console.log('GOT TO CONTAINER props', this.props),
         _react2.default.createElement(_Photo2.default, { photos: this.props.photos })
       );
     }
@@ -18410,24 +18410,585 @@ var Photo = function (_React$Component) {
   }
 
   _createClass(Photo, [{
-    key: "render",
+    key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "photogallery" },
-        "im Photo",
-        this.props.photos.map(function (pic) {
-          return _react2.default.createElement(
-            "div",
-            { className: "photo", key: true, src: pic.src },
-            console.log('IM IN THE MAP BIIISH'),
-            "description: ",
-            pic.text_description,
-            "size: ",
-            pic.size.small
+      var hsize = void 0;
+      var wsize = void 0;
+      var photoLen = this.props.photos.length;
+
+      // standard picture size 
+      if (photoLen === 1) {
+        hsize = '300px';wsize = '400px';
+      } else if (photoLen === 2) {
+        hsize = '250px';wsize = '270px';
+      } else if (photoLen === 3) {
+        hsize = '180px';wsize = hsize;
+      } else if (photoLen === 4) {
+        hsize = '160px';wsize = '143px';
+      } else if (photoLen === 6) {
+        hsize = '150px';wsize = hsize;
+      } else if (photoLen === 8) {
+        hsize = '120px';wsize = hsize;
+      }
+      // edges -- mixed picture hsize 
+      else if (photoLen === 5) {
+          hsize = '150px';wsize = hsize;
+        } else if (photoLen === 7) {
+          hsize = '90px';wsize = hsize;
+        } else if (photoLen >= 9) {
+          hsize = "135px";wsize;
+        }
+      // try to refactor to render % sizes 
+
+      if (photoLen <= 8 && photoLen !== 5 && photoLen !== 7) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'photogallery' },
+          this.props.photos.map(function (pic) {
+            return _react2.default.createElement(
+              'div',
+              { className: 'photo', key: pic.pictureId },
+              _react2.default.createElement('img', { className: 'pic', src: pic.src, height: hsize, width: wsize }),
+              _react2.default.createElement(
+                'p',
+                { className: 'text' },
+                pic.txt_description
+              )
+            );
+          })
+        );
+      } else {
+        // photoLen is 5,7,9+
+        var pic = this.props.photos;
+        if (photoLen === 5) {
+          var styles1 = { position: 'absolute', top: '0px', left: '0px' };
+          var styles2 = { position: 'absolute', top: '152px', left: '0px' };
+          var styles3 = { position: 'absolute', top: '0px', left: '152px' };
+          var styles4 = { position: 'absolute', top: '0px', left: '452px' };
+          var styles5 = { position: 'absolute', top: '152px', left: '452px'
+
+            // RETURN FOR 5 
+          };return _react2.default.createElement(
+            'div',
+            { className: 'photogallery' },
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: styles1 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[0].src, height: hsize, width: wsize }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[0].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: styles2 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[1].src, height: wsize, width: wsize }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[1].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: styles3 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[2].src, height: '300px', width: '300px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[2].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: styles4 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[3].src, height: hsize, width: wsize }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[3].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: styles5 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[4].src, height: hsize, width: wsize }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[4].txt_description
+                )
+              )
+            )
           );
-        })
-      );
+
+          //RETURN FOR 7
+        } else if (photoLen === 7) {
+          var abs = 'absolute';
+          var zero = '0px';
+
+          var _styles = { position: abs, top: zero, left: '2px' };
+          var _styles2 = { position: abs, top: '123px', left: zero };
+          var _styles3 = { position: abs, top: zero, left: '120px' };
+          var _styles4 = { position: abs, top: zero, left: '365px' };
+          var _styles5 = { position: abs, top: '123px', left: '363px' };
+          var styles6 = { position: abs, top: zero, left: '483px' };
+          var styles7 = { position: abs, top: '123px', left: '482px' };
+
+          return _react2.default.createElement(
+            'div',
+            { className: 'photogallery' },
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: _styles },
+                _react2.default.createElement('img', { className: 'pic', src: pic[0].src, height: '120px', width: '120px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[0].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: _styles2 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[1].src, height: '120px', width: '120px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[1].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: _styles3 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[2].src, height: '243px', width: '243px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[2].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: _styles4 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[3].src, height: '120px', width: '120px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[3].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: _styles5 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[4].src, height: '120px', width: '120px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[4].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: styles6 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[5].src, height: '120px', width: '120px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[5].txt_description
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'photo' },
+              _react2.default.createElement(
+                'div',
+                { className: 'pic-wrapper', style: styles7 },
+                _react2.default.createElement('img', { className: 'pic', src: pic[6].src, height: '120px', width: '120px' }),
+                _react2.default.createElement(
+                  'p',
+                  { className: 'text' },
+                  ' ',
+                  pic[6].txt_description
+                )
+              )
+            )
+          );
+        }
+        // RETURN FOR 9
+        else if (photoLen === 9) {
+            var _abs = 'absolute';
+            var _zero = '0px';
+            // medium
+            var _styles6 = { position: _abs, top: _zero, left: '2px' };
+            var _styles7 = { position: _abs, top: '137px', left: _zero
+              // large
+            };var _styles8 = { position: _abs, top: _zero, left: '135px'
+              // small top row
+            };var _styles9 = { position: _abs, top: _zero, left: '409px' };
+            var _styles10 = { position: _abs, top: _zero, left: '500px'
+              // small mid row
+            };var _styles11 = { position: _abs, top: '93px', left: '405px' };
+            var _styles12 = { position: _abs, top: '93px', left: '496px'
+              // small bottom row 
+            };var styles8 = { position: _abs, top: '185px', left: '401px' };
+            var styles9 = { position: _abs, top: '185px', left: '491px' };
+
+            return _react2.default.createElement(
+              'div',
+              { className: 'photogallery' },
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles6 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[0].src, height: '135px', width: '135px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[0].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles7 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[1].src, height: '135px', width: '135px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[1].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles8 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[2].src, height: '274px', width: '274px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[2].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles9 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[3].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[3].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles10 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[4].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[4].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles11 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[5].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[5].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles12 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[6].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[6].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: styles8 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[7].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[7].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: styles9 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[8].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[8].txt_description
+                  )
+                )
+              )
+            );
+          } else {
+            var _abs2 = 'absolute';
+            var _zero2 = '0px';
+            // medium
+            var _styles13 = { position: _abs2, top: _zero2, left: '2px' };
+            var _styles14 = { position: _abs2, top: '137px', left: _zero2
+              // large
+            };var _styles15 = { position: _abs2, top: _zero2, left: '135px'
+              // small top row
+            };var _styles16 = { position: _abs2, top: _zero2, left: '409px' };
+            var _styles17 = { position: _abs2, top: _zero2, left: '500px'
+              // small mid row
+            };var _styles18 = { position: _abs2, top: '93px', left: '405px' };
+            var _styles19 = { position: _abs2, top: '93px', left: '496px'
+              // small bottom row 
+            };var _styles20 = { position: _abs2, top: '185px', left: '401px' };
+            var _styles21 = { position: _abs2, top: '185px', left: '491px' };
+
+            return _react2.default.createElement(
+              'div',
+              { className: 'photogallery' },
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles13 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[0].src, height: '135px', width: '135px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[0].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles14 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[1].src, height: '135px', width: '135px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[1].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles15 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[2].src, height: '274px', width: '274px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[2].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles16 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[3].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[3].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles17 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[4].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[4].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles18 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[5].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[5].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles19 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[6].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[6].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles20 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[7].src, height: '90px', width: '90px' }),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'text' },
+                    ' ',
+                    pic[7].txt_description
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'photo more' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'pic-wrapper', style: _styles21 },
+                  _react2.default.createElement('img', { className: 'pic', src: pic[8].src, height: '90px', width: '90px' })
+                )
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'excess' },
+                '+',
+                this.props.photos.length - 9,
+                ' more '
+              )
+            );
+          }
+      }
     }
   }]);
 
@@ -18435,6 +18996,7 @@ var Photo = function (_React$Component) {
 }(_react2.default.Component);
 
 module.exports = Photo;
+// goal rn is to get a properly formatted 9+ photo gal
 
 /***/ }),
 /* 29 */
@@ -18495,7 +19057,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, ".photomod {\n  background-color: #ff0;\n  height: 500px;\n  width: 800px\n}\n.container {\n  background-color: #0ff;\n  height: 300px;\n  width: 600px \n}\n.photo {\n  background-color: #fff;\n  float:left;\n  height: 125px;\n  width: 125px;\n  margin: 5px\n}", ""]);
+exports.push([module.i, "body {\n  background-color: #000\n}\n.photomod {\n  background-color: #fff;\n  height: 800px;\n  width: 605px;\n  margin: center;\n}\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 2px solid rgb(167, 160, 160);\n  margin: 1em 0;\n  padding: 0;\n}\n.container {\n  position: relative;\n  top: 10px;\n  height: 400px; \n width: 600px; \n  /* height: '25%';\n  width: '35%'; */\n  overflow: hidden;\n  /* margin-left:auto;  do margin adjustments here   */\n}\n.photogallery{\n  margin:auto\n}\n.photo {\n  background-color: #fff;\n  float: left;\n  position: relative;\n  margin: 1px;\n  /* height: 90px;\n  width: 90px; */\n}\n.photo .text{\n  position: absolute;\n  background-color: #fff;\n  padding: 1px 3px;\n  border-radius: 10px;\n  top: 5px;\n  left: 5px;\n  visibility: hidden;\n}\n\n.photo:hover .text {\n  visibility: visible;\n}\n.photoheader {\n  font-size: 20px;\n  margin-left: 10px;\n}\n.viewmore {\n  float: right;\n  position: relative;\n  top: 8px;\n  right: 5px;\n  color: red\n}\nimg {\n  object-fit: cover;\n  cursor: pointer\n}\n\n.more {\n  filter: brightness(45%);\n  position:relative\n}\n.more:hover {\n  filter: brightness(20%)\n} \n\n.excess {\n  position: absolute;\n  top:200px;\n  left:520px;\n  color:white;\n  font-size:17px;\n}\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19644,95 +20206,65 @@ let faker = __webpack_require__(392);
 
 module.exports = [
   {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
+    "txt_description": faker.lorem.words(), 
+    "src": "https://loremflickr.com/320/240",
+    "pictureId": 1
   },
   {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
+    "txt_description": faker.lorem.words(), 
+    "src": "https://loremflickr.com/320/240",
+    "pictureId": 2
   },
   {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
+    "txt_description": faker.lorem.words(), 
+    "src": "https://loremflickr.com/320/240",
+    "pictureId": 3
   },
   {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
+    "txt_description": faker.lorem.words(), 
+    "src": "https://loremflickr.com/320/240",
+    "pictureId": 4
   },
-  {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
-  },
-  {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
-  },
-  {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
-  },
-  {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
-  },
-  {
-    "size": {
-      "carosel": "600px",
-      "large": "500px",
-      "medium": "400px",
-      "small": "300px"
-    },
-    "txt_description": faker.lorem.text(), 
-    "src": "https://loremflickr.com/320/240"
-  }
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 5
+  // },
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 6
+  // },
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 7
+  // },
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 8
+  // },
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 9
+  // },
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 10
+  // },
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 11
+  // },
+  // {
+  //   "txt_description": faker.lorem.words(), 
+  //   "src": "https://loremflickr.com/320/240",
+  //   "pictureId": 12
+  // }
 ]
 
 

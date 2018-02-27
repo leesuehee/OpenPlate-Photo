@@ -18,7 +18,7 @@ class PhotoModule extends React.Component {
 //     this.setState({
 //       carosel: !this.state.carosel
 //     });
-//     // if carosel is false regular photo gallery is displayed
+//     // if carose1l is false regular photo gallery is displayed
 //     // else carosel view will render.. will work on photo gallery clone first
 //   }
 
@@ -26,15 +26,11 @@ class PhotoModule extends React.Component {
 
     return (
       <div className = 'photomod'>
-        <span className = 'photoheader'> 
-           Photos 
-        </span>
-        <span className = 'viewmore'>
-            View more
-        </span>
-        {console.log('made it past photomod')}
+        <span className = 'photoheader'>{this.state.dupePhotos.length} Photos</span>
+        <span className = 'viewmore'>View more</span>
+        <hr/>
         <Container photos = {this.state.dupePhotos}/>
-        </div>
+      </div>
     )
   }
 }
