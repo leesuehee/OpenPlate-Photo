@@ -45,7 +45,6 @@ hr {
   left: 5px;
   visibility: hidden;
 }
-
 .photo:hover .text {
   visibility: visible;
 }
@@ -64,7 +63,6 @@ img {
   object-fit: cover;
   cursor: pointer
 }
-
 .more {
   filter: brightness(45%);
   position:relative
@@ -72,7 +70,6 @@ img {
 .more:hover {
   filter: brightness(20%)
 } 
-
 .excess {
   position: absolute;
   top:200px;
@@ -80,7 +77,53 @@ img {
   color:white;
   font-size:17px;
 }
+/* SLIDER CSS */
 
 
+.slidebinder{
+  left:300px;
+  position: relative;
+  width: 500px; 
+  height: 500px; 
+  overflow: hidden;
+}
+.sliderbox{
+  width:500px;
+  position:absolute;
+  background-color:rgba(48,107,111,.4) 
+}
+.slide{
+  width:5000px ; /*need a width on all slides..somehow*/
+  height:500px;
+  background-color: rgba(48,107,111,.5);
+  font-size:100px;
+  float:left;
+}
+.left{
+  width: 30px;
+  height: 35px;
+  background-color:#000;
+  text-align: center;
+  padding: 20px 0px 0px 0px;
+  position: absolute;
+  top: 200px;
+  z-index: 201; /* can move things infront of things */
+}
+.right{
+  width: 30px;
+  height: 35px;
+  background-color: #000;
+  text-align: center;
+  padding: 20px 0px 0px 0px;
+  position:absolute;
+  top:200px;
+  right: 0px;
+  z-index: 201;
+}
 
-
+.blackout {
+  background-color:#000;
+  height:100%;
+  width: 100%;
+  filter:brightness(20%);
+}
