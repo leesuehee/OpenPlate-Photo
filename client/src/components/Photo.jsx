@@ -4,24 +4,22 @@ class Photo extends React.Component {
   constructor(props) {
     super(props)
   }
-
   render() {
     let hsize;
     let wsize;
-    let photoLen = this.props.photos.length;
-   
+    let photoLen = this.props.photos.length; 
   // standard picture size 
-    if (photoLen === 1) {hsize = '300px'; wsize = '400px';
-    } else if (photoLen === 2) {hsize = '250px'; wsize = '270px';
-    } else if (photoLen === 3) {hsize = '180px'; wsize = hsize;
-    } else if (photoLen === 4) {hsize = '160px'; wsize = '143px';
-    } else if (photoLen === 6) {hsize = '150px'; wsize = hsize;
+    if (photoLen === 1) {hsize = '300px'; wsize = '400px'; 
+    } else if (photoLen === 2) {hsize = '250px'; wsize = '270px'; 
+    } else if (photoLen === 3) {hsize = '180px'; wsize = hsize; 
+    } else if (photoLen === 4) {hsize = '160px'; wsize = '143px'; 
+    } else if (photoLen === 6) {hsize = '150px'; wsize = hsize; 
     } else if (photoLen === 8) {hsize = '120px'; wsize = hsize;    
     }
   // edges -- mixed picture hsize 
       else if (photoLen === 5) {hsize = '150px'; wsize = hsize
-    } else if (photoLen === 7) {hsize = '90px'; wsize = hsize;
-    } else if (photoLen >= 9) {hsize = "135px";wsize;
+    } else if (photoLen === 7) {hsize = '90px'; wsize = hsize; 
+    } else if (photoLen >= 9) {hsize = "135px"; wsize; 
     }
 // try to refactor to render % sizes 
     

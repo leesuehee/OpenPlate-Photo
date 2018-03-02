@@ -15,11 +15,16 @@ class PhotoModule extends React.Component {
       dupePhotos: dupe
     }
   }
-  handleClick() {
-    console.log ('clicked')
+  handleClick(e) {
+    console.log('clicked',e)
+    // if (this.state.carosel === true) {
+
+    // }
+    console.log('e target',e.target.value)
     this.setState({
       carosel: !this.state.carosel
     });
+     
   }
   render() { 
     let display;
@@ -27,11 +32,11 @@ class PhotoModule extends React.Component {
     if (this.state.carosel) {
       display = <Carosel photos = {this.state.dupePhotos} click = {this.handleClick.bind(this)}/>
     } else {
-      display = <Container photos = {this.state.dupePhotos} click = {this.handleClick.bind(this)}/>
+      display = <Container photos = {this.state.dupePhotos}/>
     }
 
     return (
-      <div className = 'photomod'>
+      <div className = 'photomod' onClick = {this.handleClick.bind(this)}>
         <span className = 'photoheader'>{this.state.dupePhotos.length} Photos</span>
         <span className = 'viewmore'>View more</span>
         <hr/>
@@ -40,4 +45,4 @@ class PhotoModule extends React.Component {
     )
   }
 }
-ReactDOM.render(<PhotoModule/>, document.getElementById('app'))
+export default ReactDOM.render(<PhotoModule/>, document.getElementById('app'))

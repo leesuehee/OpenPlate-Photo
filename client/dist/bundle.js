@@ -1282,8 +1282,12 @@ var PhotoModule = function (_React$Component) {
 
   _createClass(PhotoModule, [{
     key: 'handleClick',
-    value: function handleClick() {
-      console.log('clicked');
+    value: function handleClick(e) {
+      console.log('clicked', e);
+      // if (this.state.carosel === true) {
+
+      // }
+      console.log('e target', e.target.value);
       this.setState({
         carosel: !this.state.carosel
       });
@@ -1296,12 +1300,12 @@ var PhotoModule = function (_React$Component) {
       if (this.state.carosel) {
         display = _react2.default.createElement(_Carosel2.default, { photos: this.state.dupePhotos, click: this.handleClick.bind(this) });
       } else {
-        display = _react2.default.createElement(_Container2.default, { photos: this.state.dupePhotos, click: this.handleClick.bind(this) });
+        display = _react2.default.createElement(_Container2.default, { photos: this.state.dupePhotos });
       }
 
       return _react2.default.createElement(
         'div',
-        { className: 'photomod' },
+        { className: 'photomod', onClick: this.handleClick.bind(this) },
         _react2.default.createElement(
           'span',
           { className: 'photoheader' },
@@ -18719,7 +18723,6 @@ var Photo = function (_React$Component) {
       var hsize = void 0;
       var wsize = void 0;
       var photoLen = this.props.photos.length;
-
       // standard picture size 
       if (photoLen === 1) {
         hsize = '300px';wsize = '400px';
@@ -19348,31 +19351,30 @@ var Carosel = function (_React$Component) {
   }
 
   _createClass(Carosel, [{
-    key: 'arrows',
-    value: function arrows(current) {
-      (0, _jquery2.default)(".right").show();
-      (0, _jquery2.default)(".left").show();
-    }
-  }, {
     key: 'onRightClick',
-    value: function onRightClick() {
-      console.log('clicked R');
+    value: function onRightClick(e) {
+      console.log('e', e.target.value);
+      console.log('right clicked');
       if (this.state.current < this.state.total) {
+        var inc = this.state.current++;
         (0, _jquery2.default)(".sliderbox").animate({ left: "-=500" }, 500);
         (0, _jquery2.default)(".right").animate({ left: "+=500" }, 500);
         (0, _jquery2.default)(".left").animate({ left: "+=500" }, 500);
-        this.arrows(this.state.current);
+        this.state.current++;
       }
     }
   }, {
     key: 'onLeftClick',
-    value: function onLeftClick() {
-      console.log('clicked L');
-
-      (0, _jquery2.default)(".sliderbox").animate({ left: "+=500" }, 500);
-      (0, _jquery2.default)(".right").animate({ left: "-=500" }, 500);
-      (0, _jquery2.default)(".left").animate({ left: "-=500" }, 500);
-      this.arrows(this.state.current);
+    value: function onLeftClick(e) {
+      console.log('left clicked');
+      console.log(e.target.value);
+      if (this.state.current > 1) {
+        var dec = this.state.current--;
+        (0, _jquery2.default)(".sliderbox").animate({ left: "+=500" }, 500);
+        (0, _jquery2.default)(".right").animate({ left: "-=500" }, 500);
+        (0, _jquery2.default)(".left").animate({ left: "-=500" }, 500);
+        this.state.current--;
+      }
     }
   }, {
     key: 'render',
@@ -19381,8 +19383,7 @@ var Carosel = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement('div', { className: 'blackout' }),
+        { className: 'outtermost' },
         _react2.default.createElement(
           'div',
           { className: 'slidebinder' },
@@ -19392,7 +19393,7 @@ var Carosel = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'left', onClick: this.onLeftClick.bind(this) },
-              _react2.default.createElement('img', { src: 'https://retrofitaccelerator.cityofnewyork.us/sites/default/files/public/arrow_up.png',
+              _react2.default.createElement('img', { src: 'http://www.thorlux.co.uk/shared/media/arrow-left-white.png',
                 width: '30px', height: '35px' })
             ),
             _react2.default.createElement(
@@ -19407,7 +19408,7 @@ var Carosel = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'right', onClick: this.onRightClick.bind(this) },
-              _react2.default.createElement('img', { src: 'https://retrofitaccelerator.cityofnewyork.us/sites/default/files/public/arrow_up.png',
+              _react2.default.createElement('img', { src: 'http://www.thorlux.com/shared/media/arrow-right-white.png',
                 width: '30px', height: '35px' })
             )
           )
@@ -118799,7 +118800,7 @@ exports = module.exports = __webpack_require__(1082)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: #000\n}\n.photomod {\n  background-color: #fff;\n  height: 800px;\n  width: 605px;\n  margin: center;\n}\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 2px solid rgb(167, 160, 160);\n  margin: 1em 0;\n  padding: 0;\n}\n.container {\n  position: relative;\n  top: 10px;\n  height: 400px; \n width: 600px; \n  /* height: '25%';\n  width: '35%'; */\n  overflow: hidden;\n  /* margin-left:auto;  do margin adjustments here   */\n}\n.photogallery{\n  margin:auto\n}\n.photo {\n  background-color: #fff;\n  float: left;\n  position: relative;\n  margin: 1px;\n  /* height: 90px;\n  width: 90px; */\n}\n.photo .text{\n  position: absolute;\n  background-color: #fff;\n  padding: 1px 3px;\n  border-radius: 10px;\n  top: 5px;\n  left: 5px;\n  visibility: hidden;\n}\n.photo:hover .text {\n  visibility: visible;\n}\n.photoheader {\n  font-size: 20px;\n  margin-left: 10px;\n}\n.viewmore {\n  float: right;\n  position: relative;\n  top: 8px;\n  right: 5px;\n  color: red\n}\nimg {\n  object-fit: cover;\n  cursor: pointer\n}\n.more {\n  filter: brightness(45%);\n  position:relative\n}\n.more:hover {\n  filter: brightness(20%)\n} \n.excess {\n  position: absolute;\n  top:200px;\n  left:520px;\n  color:white;\n  font-size:17px;\n}\n/* SLIDER CSS */\n\n\n.slidebinder{\n  left:300px;\n  position: relative;\n  width: 500px; \n  height: 500px; \n  overflow: hidden;\n}\n.sliderbox{\n  width:500px;\n  position:absolute;\n  background-color:rgba(48,107,111,.4) \n}\n.slide{\n  width:5000px ; /*need a width on all slides..somehow*/\n  height:500px;\n  background-color: rgba(48,107,111,.5);\n  font-size:100px;\n  float:left;\n}\n.left{\n  width: 30px;\n  height: 35px;\n  background-color:#000;\n  text-align: center;\n  padding: 20px 0px 0px 0px;\n  position: absolute;\n  top: 200px;\n  z-index: 201; /* can move things infront of things */\n}\n.right{\n  width: 30px;\n  height: 35px;\n  background-color: #000;\n  text-align: center;\n  padding: 20px 0px 0px 0px;\n  position:absolute;\n  top:200px;\n  right: 0px;\n  z-index: 201;\n}\n\n.blackout {\n  background-color:#000;\n  height:100%;\n  width: 100%;\n  filter:brightness(20%);\n}", ""]);
+exports.push([module.i, "body {\n  background-color: #000\n}\n.photomod {\n  background-color: #fff;\n  height: 800px;\n  width: 605px;\n  margin: center;\n}\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 2px solid rgb(167, 160, 160);\n  margin: 1em 0;\n  padding: 0;\n}\n.container {\n  position: relative;\n  top: 10px;\n  height: 400px; \n width: 600px; \n  /* height: '25%';\n  width: '35%'; */\n  overflow: hidden;\n  /* margin-left:auto;  do margin adjustments here   */\n}\n.photogallery {\n  margin:auto\n}\n.photo {\n  background-color: #fff;\n  float: left;\n  position: relative;\n  margin: 1px;\n  /* height: 90px;\n  width: 90px; */\n}\n.photo .text{\n  position: absolute;\n  background-color: #fff;\n  padding: 1px 3px;\n  border-radius: 10px;\n  top: 5px;\n  left: 5px;\n  visibility: hidden;\n}\n.photo:hover .text {\n  visibility: visible;\n}\n.photoheader {\n  font-size: 20px;\n  margin-left: 10px;\n}\n.viewmore {\n  float: right;\n  position: relative;\n  top: 8px;\n  right: 5px;\n  color: red\n}\nimg {\n  object-fit: cover;\n  cursor: pointer\n}\n.more {\n  filter: brightness(45%);\n  position:relative\n}\n.more:hover {\n  filter: brightness(20%)\n} \n.excess {\n  position: absolute;\n  top:200px;\n  left:520px;\n  color:white;\n  font-size:17px;\n}\n/* SLIDER CSS */\n.slidebinder{\n  left:300px;\n  position: relative;\n  width: 500px; \n  height: 500px; \n  overflow: hidden;\n  box-shadow: 0 0 0 1000px rgba(0,0,0,.9);\n  box-shadow: 0 0 0 100vmax rgba(0,0,0,.9);\n}\n.sliderbox{\n  width:500px;\n  position:absolute;\n  background-color:rgba(48,107,111,.4) \n}\n.slide{\n  width:5000px ; /*need a width on all slides..somehow*/\n  height:500px;\n  background-color: rgba(48,107,111,.5);\n  font-size:100px;\n  float:left;\n}\n.left{\n  width: 30px;\n  height: 35px;\n  background-color:#000;\n  text-align: center;\n  padding: 20px 0px;\n  position: absolute;\n  top: 200px;\n  z-index: 101; /* can move things infront of things */\n}\n.right{\n  width: 35px;\n  height: 30px;\n  background-color: #000;\n  text-align: center;\n  padding: 20px 0px;\n  position:absolute;\n  top:200px;\n  right: 0px;\n  z-index: 101;\n}\n.blackout {\n  background-color:#000;\n  height:100%;\n  width: 100%;\n  filter:brightness(20%);\n}", ""]);
 
 // exports
 

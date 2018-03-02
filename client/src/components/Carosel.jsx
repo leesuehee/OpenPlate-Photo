@@ -9,43 +9,40 @@ class Carosel extends React.Component {
     this.state = {
       display: dupe,
       total: dupe.length,
-      current: 0
+      current: 0,
     }
   }
-
-  arrows(current) {
-    $(".right").show();
-    $(".left").show();
-  }
-  onRightClick() {
-    console.log('clicked R')
+  onRightClick(e) {
+    console.log('e',e.target.value);
+    console.log('right clicked')
     if (this.state.current < this.state.total) {
+      let inc = this.state.current++;
       $(".sliderbox").animate({left:"-=500"},500);
       $(".right").animate({left:"+=500"},500);
       $(".left").animate({left:"+=500"},500);
-      this.arrows(this.state.current)
+      this.state.current++;
     }
   }
-  onLeftClick() {
-    console.log('clicked L')
 
+  onLeftClick(e) {
+    console.log('left clicked')
+    console.log(e.target.value)
+    if (this.state.current > 1) {
+      let dec = this.state.current--;
       $(".sliderbox").animate({left:"+=500"},500);
       $(".right").animate({left:"-=500"},500);
       $(".left").animate({left:"-=500"},500);
-      this.arrows(this.state.current)
-    
+      this.state.current--
+    }
   }
+
   render() {
-
     return (
-      <div>     
-        <div className = 'blackout'>
-        </div>
-        <div className = 'slidebinder'>
+      <div className = 'outtermost' >     
+        <div className = 'slidebinder' >
           <div className = 'sliderbox'>
-
             <div className = 'left' onClick = {this.onLeftClick.bind(this)}>
-              <img src = 'https://retrofitaccelerator.cityofnewyork.us/sites/default/files/public/arrow_up.png'
+              <img src = 'http://www.thorlux.co.uk/shared/media/arrow-left-white.png'
                 width = '30px' height = '35px'/>
             </div>
             <div className = 'slide'>
@@ -56,7 +53,7 @@ class Carosel extends React.Component {
               )}
             </div>
             <div className = 'right' onClick = {this.onRightClick.bind(this)}>
-               <img src ='https://retrofitaccelerator.cityofnewyork.us/sites/default/files/public/arrow_up.png'
+               <img src ='http://www.thorlux.com/shared/media/arrow-right-white.png'
                 width = '30px' height = '35px'/>
             </div>
           </div>
@@ -64,7 +61,6 @@ class Carosel extends React.Component {
       </div>
     )
   }
-
 }
 
 module.exports = Carosel;

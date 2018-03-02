@@ -25,7 +25,7 @@ hr {
   overflow: hidden;
   /* margin-left:auto;  do margin adjustments here   */
 }
-.photogallery{
+.photogallery {
   margin:auto
 }
 .photo {
@@ -78,14 +78,14 @@ img {
   font-size:17px;
 }
 /* SLIDER CSS */
-
-
 .slidebinder{
   left:300px;
   position: relative;
   width: 500px; 
   height: 500px; 
   overflow: hidden;
+  box-shadow: 0 0 0 1000px rgba(0,0,0,.9);
+  box-shadow: 0 0 0 100vmax rgba(0,0,0,.9);
 }
 .sliderbox{
   width:500px;
@@ -104,23 +104,22 @@ img {
   height: 35px;
   background-color:#000;
   text-align: center;
-  padding: 20px 0px 0px 0px;
+  padding: 20px 0px;
   position: absolute;
   top: 200px;
-  z-index: 201; /* can move things infront of things */
+  z-index: 101; /* can move things infront of things */
 }
 .right{
-  width: 30px;
-  height: 35px;
+  width: 35px;
+  height: 30px;
   background-color: #000;
   text-align: center;
-  padding: 20px 0px 0px 0px;
+  padding: 20px 0px;
   position:absolute;
   top:200px;
   right: 0px;
-  z-index: 201;
+  z-index: 101;
 }
-
 .blackout {
   background-color:#000;
   height:100%;
