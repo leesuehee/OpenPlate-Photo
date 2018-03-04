@@ -2,11 +2,12 @@ let mongoose = require('mongoose');
 let database = require('../db/models/photos.js');
 let dupe = require('./test/dataDupe.js');
 
-mongoose.connect('mongod://localhost/photos');
+mongoose.connect('mongodb://localhost/photos');
 
-let seeding = (dupe) => {
-  for (let data of dupe) {
-    database.save(data);
+let seeding = function(data) {
+  console.log('seeding dupe',dupe.length);
+  for (let i = 0; i < dupe.length; i++) {
+    database.save(dupe[i]) 
   }
 };
-seeding(dupe);
+seeding(dupe);  
