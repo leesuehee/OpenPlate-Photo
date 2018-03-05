@@ -1,39 +1,26 @@
 const mongoose = require('mongoose');
-// require('seed-mongoose')();
 
-// mongoose.connect('mongodb://localhost:27017/photos');
-// mongoose.connect('mongodb://localhost:27017/photos', mongoOptions, () => {
-//   require('seed-mongoose')({
-//     suffix: '_seed',
-//     mongoose: mongoose
-//   }), function (err, results) {
-//     if (err) throw err;
-//     else console.log(results);
-//   };
+mongoose.connect('mongodb://localhost/photos');
 
 let photoSchema = mongoose.Schema({
-  id: {type: Number, unique: true},
-  size: {carosel: String, large: String, medium: String, small: String},
-  txt_description: String, src: String});
+  restaurant_id: Number,
+  src: String,
+  txt_description: String
+});
+
 
 let PhotoModel = mongoose.model('Photo', photoSchema);
 
-
-let save = (collection) => {
-  let photoCollection = new PhotoModel(collection);
-  photoCollection.save((err, succ) => {
-    if (err) {
-      throw err;
-    } else {
-      console.log('db has been updated');
-    }
-  });
+let save = (data) => {
+  let photoCollection = new PhotoModel(data);
+  photoCollection.collection.insertOne(data)
 };
 
+let retrieve = (restaurant, cb) => {
+  let found = PhotoModel.find({
+    restaurant_Id:restaurant
+  },cb);
+};
 
-// make an retrieve
-// let retrieve = () => {
-//   PhotoModel.find();
-// }
-
+module.exports.retrieve = retrieve;
 module.exports.save = save;
