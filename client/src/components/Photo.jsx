@@ -8,27 +8,24 @@ class Photo extends React.Component {
     let hsize;
     let wsize;
     let photoLen = this.props.photos.length; 
-  // standard picture size 
-    if (photoLen === 1) {hsize = '300px'; wsize = '400px'; 
-    } else if (photoLen === 2) {hsize = '250px'; wsize = '270px'; 
-    } else if (photoLen === 3) {hsize = '180px'; wsize = hsize; 
-    } else if (photoLen === 4) {hsize = '160px'; wsize = '143px'; 
-    } else if (photoLen === 6) {hsize = '150px'; wsize = hsize; 
-    } else if (photoLen === 8) {hsize = '120px'; wsize = hsize;    
-    }
-  // edges -- mixed picture hsize 
-      else if (photoLen === 5) {hsize = '150px'; wsize = hsize
+    if (photoLen === 1) {hsize = '500px'; wsize = '599px'; 
+    } else if (photoLen === 2) {hsize = '275px'; wsize = '297px'; 
+    } else if (photoLen === 3) {hsize = '200px'; wsize = '198x'; 
+    } else if (photoLen === 4) {hsize = '160px'; wsize = '148px'; 
+    } else if (photoLen === 6) {hsize = '170px'; wsize = '198px'; 
+    } else if (photoLen === 8) {hsize = '148px'; wsize = hsize;    
+    } else if (photoLen === 5) {hsize = '150px'; wsize = hsize
     } else if (photoLen === 7) {hsize = '90px'; wsize = hsize; 
     } else if (photoLen >= 9) {hsize = "135px"; wsize; 
-    }
-// try to refactor to render % sizes 
-    
+    }  
+
     if (photoLen <= 8 && photoLen !== 5 && photoLen !== 7) {
       return (
         <div className = 'photogallery' width = "600px" height = "300px">
           {this.props.photos.map(pic => 
-            <div className = 'photo' key = {pic.pictureId}>
-              <img className = 'pic' src = {pic.src} height = {hsize} width = {wsize}/>
+            <div className = 'photo' key = {pic.pictureId} >
+              <img className = 'pic' src = {pic.src} height = {hsize} width = {wsize}
+              />
               <p className = 'text'>{pic.txt_description}</p>
             </div>
           )}
@@ -262,7 +259,6 @@ class Photo extends React.Component {
 
           return (
             <div className = 'photogallery'>
-
               <div className = 'photo'>
                 <div className = 'pic-wrapper' style = {styles1}>
                   <img className = 'pic' onClick = {this.props.click} src = {pic[0].src} height = '135px' width = '135px'/>

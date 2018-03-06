@@ -1,11 +1,10 @@
-import React from 'react';
-import Carosel from '../client/src/components/Carosel.jsx';
-import Photo from '../client/src/components/Photo.jsx';
-import Container from '../client/src/components/Container.jsx';
-import faker from 'faker';
 
+import faker from 'faker';
 import Enzyme from  'enzyme';
+
 import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import Photo from '../client/src/components/Photo.jsx'; 
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -33,8 +32,7 @@ describe('photo components', () => {
     }
   ]
   let wrapper = Enzyme.mount(<Photo photos = {testerData}/>);
-  console.log(wrapper)
-  it('should render 4 photos', () => {
+    it('should render 4 photos', () => {
     expect(wrapper.find('.photogallery').children().length).toEqual(4);
   });
 

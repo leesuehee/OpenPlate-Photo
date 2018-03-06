@@ -7,8 +7,6 @@ import $ from 'jquery';
 
 const axios = require('axios')
 
-let dupe = require('../../seeds/test/dataDupe.js');
-
 class PhotoModule extends React.Component {
   constructor(props) {
     super(props)
@@ -41,7 +39,6 @@ class PhotoModule extends React.Component {
   onRightClick() {
     if(this.state.current < this.state.total-1) {
       this.state.current++;
-      console.log(this.state.current)
       $(".sliderbox").animate({left:"-=600"},200);
       $(".right").animate({left:"+=600"},200);
       $(".left").animate({left:"+=600"},200);
@@ -50,7 +47,6 @@ class PhotoModule extends React.Component {
   onLeftClick() {
     if(this.state.current > 0) {
       this.state.current--;
-      console.log(this.state.current);
       $(".sliderbox").animate({left:"+=600"},200);
       $(".right").animate({left:"-=600"},200);
       $(".left").animate({left:"-=600"},200);

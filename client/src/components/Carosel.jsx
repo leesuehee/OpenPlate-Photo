@@ -7,7 +7,6 @@ class Carosel extends React.Component {
   render() {
     return (
       <div className = 'outtermost' >  
-      {console.log(this.props)}   
         <div className = 'slidebinder' >
           <div className = 'sliderbox'>
             <div className = 'left' onClick = {this.props.left} >
