@@ -1,13 +1,25 @@
+{
+  "machine": {
+    "node": {
+      "version": "9.4.0"
+    }, 
+    "timezone": "America/San_Francisco"
+  }, 
+  "dependencies": {
+    "pre": [
+      "npm install jest"
+    ]
+  }
+}
+# machine:
 
-machine:
+#   timezone:
+#     America/San_Francisco
 
-  timezone:
-    America/San_Francisco
-
-  node:
-    version: 9.4.0
+#   node:
+#     version: 9.4.0
       
-dependencies:
-  pre:
-    - npm install jest
+# dependencies:
+#   pre:
+#     - npm install jest
 
