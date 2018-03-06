@@ -40,7 +40,6 @@
     "jest-enzyme": "^4.2.0"
   },
   "scripts": {
-    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
     "test": "jest",
     "start": "nodemon ./server/index.js --watch",
     "seed": "node ./seeds/photoSeed.js",
@@ -50,12 +49,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TeamMysteryMoose/photos.git"
+    "url": "git+http://github.com/TeamMysteryMoose/photos.git"
   },
   "author": "suehee lee",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TeamMysteryMoose/photos/issues"
+    "url": "http://github.com/TeamMysteryMoose/photos/issues"
   },
-  "homepage": "https://github.com/TeamMysteryMoose/photos#readme"
+  "homepage": "http://github.com/TeamMysteryMoose/photos#readme"
 }
