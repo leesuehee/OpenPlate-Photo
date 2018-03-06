@@ -5,6 +5,8 @@ import Carosel from './components/Carosel.jsx';
 import css from './style.css';
 import $ from 'jquery';
 
+const axios = require('axios')
+
 let dupe = require('../../seeds/test/dataDupe.js');
 
 class PhotoModule extends React.Component {
@@ -12,60 +14,78 @@ class PhotoModule extends React.Component {
     super(props)
     this.state = {
       carosel: false,
-      dupePhotos: dupe,
-      total: dupe.length,
+      dupePhotos: [],
+      total: 0,
       current: 0,
     }
   }
-  handleClick() {
-      this.setState({
-        carosel: !this.state.carosel
-      });
-  }
-  onRightClick() {
-    if (this.state.current < this.state.total) {
-      let inc = this.state.current++;
-      $(".sliderbox").animate({left:"-=600"},400);
-      $(".right").animate({left:"+=600"},400);
-      $(".left").animate({left:"+=600"},400);
-      // this.state.current++;
-      this.setState({
-        current:inc
+
+  componentDidMount () {
+    let thiz = this;
+    axios.get('/photos')
+      .then(function(response) {
+        thiz.setState({
+          dupePhotos: response.data[0].gallery,
+          total: response.data[0].gallery.length
+        })
+      }).catch(function(error) {
+        console.log('axios error', error)
       })
-    }
   }
 
-  onLeftClick() {
-    if (this.state.current > 1) {
-      let dec = this.state.current--;
-      $(".sliderbox").animate({left:"+=600"},400);
-      $(".right").animate({left:"-=600"},400);
-      $(".left").animate({left:"-=600"},400);
-      // this.state.current--
-      this.setState({
-        current:dec
-      })
+  handleClick() {
+    this.setState({
+      carosel: !this.state.carosel
+    });
+  }
+  onRightClick() {
+    if(this.state.current < this.state.total-1) {
+      this.state.current++;
+      console.log(this.state.current)
+      $(".sliderbox").animate({left:"-=600"},200);
+      $(".right").animate({left:"+=600"},200);
+      $(".left").animate({left:"+=600"},200);
     }
   }
-  
+  onLeftClick() {
+    if(this.state.current > 0) {
+      this.state.current--;
+      console.log(this.state.current);
+      $(".sliderbox").animate({left:"+=600"},200);
+      $(".right").animate({left:"-=600"},200);
+      $(".left").animate({left:"-=600"},200);
+    }
+  }
   render() { 
     return (
       <div>
-        <div className = 'photomod' onClick = {this.handleClick.bind(this)}>
-          <span className = 'photoheader'>{this.state.dupePhotos.length} Photos</span>
-          <span className = 'viewmore'>View more</span>
-          <hr/>
-          <Container photos = {this.state.dupePhotos}/>
-        </div>
+        {(this.state.carosel)? 
+          <div>
+            <div className = 'photomod' onClick = {this.handleClick.bind(this)}>
+              <div className = 'relative'>
+                <span className = 'photoheader'>{this.state.total} Photos</span>
+                <span className = 'viewmore' onClick = {this.handleClick.bind(this)}>View more</span>
+                <Container photos = {this.state.dupePhotos}/>
+              </div>
+            </div>
+            <div className = 'toggle-carosel'>
+              <Carosel photos = {this.state.dupePhotos}  
+              left = {this.onLeftClick.bind(this)} right = {this.onRightClick.bind(this)}
+              originState = {this.state}/> 
 
-        <div className = 'toggle-carosel'>
-        {(this.state.carosel)? <Carosel photos = {this.state.dupePhotos} click = {this.handleClick.bind(this)} 
-          left = {this.onLeftClick.bind(this)} right = {this.onRightClick.bind(this)}
-          originState = {this.state}
-          /> : <div></div>}
-        </div>
+            </div>
+          </div>
+        :
+          <div className = 'photomod'>
+            <div className = 'relative'>
+              <span className = 'photoheader'>{this.state.total} Photos</span>
+              <span className = 'viewmore' onClick = {this.handleClick.bind(this)}>View more</span>
+              <Container photos = {this.state.dupePhotos} carosel = {this.handleClick.bind(this)}/>
+            </div>
+          </div>}
       </div>
     )
   }
 }
 export default ReactDOM.render(<PhotoModule/>, document.getElementById('app'))
+

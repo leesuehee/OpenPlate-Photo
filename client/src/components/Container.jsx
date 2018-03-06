@@ -7,10 +7,10 @@ class Container extends React.Component{
   }
 
   render() {
-
     return (
-      <div className = "container">
-        <Photo photos = {this.props.photos} click = {this.props.click}/>
+      <div className = "container" onClick = {this.props.carosel} >
+        <hr/>
+        <Photo photos = {this.props.photos}/>
       </div>
     )
   }

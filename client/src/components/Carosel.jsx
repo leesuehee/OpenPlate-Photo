@@ -6,7 +6,8 @@ class Carosel extends React.Component {
   }
   render() {
     return (
-      <div className = 'outtermost' >     
+      <div className = 'outtermost' >  
+      {console.log(this.props)}   
         <div className = 'slidebinder' >
           <div className = 'sliderbox'>
             <div className = 'left' onClick = {this.props.left} >
@@ -15,7 +16,7 @@ class Carosel extends React.Component {
             </div>
             <div className = 'slide'>
               {this.props.originState.dupePhotos.map(pic => 
-                <img key src = {pic.src} height = '600px' width = '600px'/>
+                  <img key src = {pic.src} height = '600px' width = '600px'/>
               )}
             </div>
             <div className = 'right' onClick = {this.props.right} >
@@ -30,7 +31,3 @@ class Carosel extends React.Component {
 }
 
 module.exports = Carosel;
-
-
-
-
