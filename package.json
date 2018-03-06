@@ -1,0 +1,60 @@
+{
+  "name": "open-table-photo-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.6.0",
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "dev": "^0.1.3",
+    "express": "^4.16.2",
+    "jest": "^22.4.0",
+    "jquery": "^3.3.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.0.6",
+    "nodemon": "^1.15.1",
+    "nvm": "0.0.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "request": "^2.83.0",
+    "seed-mongoose": "^0.5.0",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.11.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.4.1",
+    "css-loader": "^0.28.10",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "faker": "^4.1.0",
+    "jest-enzyme": "^4.2.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon ./server/index.js --watch",
+    "seed": "node ./seeds/photoSeed.js",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "lint": "eslint-config-airbnb-base"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+http://github.com/TeamMysteryMoose/photos.git"
+  },
+  "author": "suehee lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "http://github.com/TeamMysteryMoose/photos/issues"
+  },
+  "homepage": "http://github.com/TeamMysteryMoose/photos#readme"
+}
