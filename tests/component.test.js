@@ -32,7 +32,7 @@ describe('photo components', () => {
     }
   ]
   let wrapper = Enzyme.mount(<Photo photos = {testerData}/>);
-    it('should render 4 photos', () => {
+  it('should render 4 photos', () => {
     expect(wrapper.find('.photogallery').children().length).toEqual(4);
   });
 

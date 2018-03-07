@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/photos');
+mongoose.connect('mongodb://localhost/photos');// db name
 
 let photoSchema = mongoose.Schema({
   restaurant_id: Number,
@@ -9,7 +9,7 @@ let photoSchema = mongoose.Schema({
 });
 
 
-let PhotoModel = mongoose.model('Photo', photoSchema);
+let PhotoModel = mongoose.model('photos', photoSchema);//'' is collection name
 
 let save = (data) => {
   let photoCollection = new PhotoModel(data);
