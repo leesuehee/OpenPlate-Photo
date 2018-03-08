@@ -20,7 +20,9 @@ class PhotoModule extends React.Component {
 
   componentDidMount () {
     let thiz = this;
-    axios.get('/photos')
+
+    console.log(this.props.photos);
+    axios.get(`/photos/${this.props.photos}`)
       .then(function(response) {
         thiz.setState({
           dupePhotos: response.data[0].gallery,
@@ -83,5 +85,5 @@ class PhotoModule extends React.Component {
     )
   }
 }
-export default ReactDOM.render(<PhotoModule/>, document.getElementById('app'))
+export default ReactDOM.render(<PhotoModule photos={1}/>, document.getElementById('app'))
 

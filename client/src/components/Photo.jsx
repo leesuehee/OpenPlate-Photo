@@ -1,4 +1,5 @@
 import React from 'react';
+// import PhotoCaseOne from './PhotoLayout/onePhoto'
 
 class Photo extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Photo extends React.Component {
     let hsize;
     let wsize;
     let photoLen = this.props.photos.length; 
-    if (photoLen === 1) {hsize = '500px'; wsize = '599px'; 
+    if (photoLen === 1) {hsize = '400px'; wsize = '600px'; 
     } else if (photoLen === 2) {hsize = '275px'; wsize = '297px'; 
     } else if (photoLen === 3) {hsize = '200px'; wsize = '198x'; 
     } else if (photoLen === 4) {hsize = '160px'; wsize = '148px'; 
