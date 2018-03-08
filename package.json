@@ -41,8 +41,8 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "nodemon ../server/index.js --watch",
-    "seed": "node ../seeds/photoSeed.js",
+    "start": "nodemon ./server/index.js --watch",
+    "seed": "node ./seeds/photoSeed.js",
     "build": "webpack",
     "watch": "webpack --watch",
     "lint": "eslint-config-airbnb-base"

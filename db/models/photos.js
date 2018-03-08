@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/photos');// db name
+// mongoose.connect('mongodb://mongo:27016/photos');// db name
+mongoose.connect('mongodb://localhost/photos');
 
 let photoSchema = mongoose.Schema({
   restaurant_id: Number,
@@ -13,7 +14,7 @@ let PhotoModel = mongoose.model('photos', photoSchema);//'' is collection name
 
 let save = (data) => {
   let photoCollection = new PhotoModel(data);
-  photoCollection.collection.insertOne(data)
+  photoCollection.collection.insertOne(data);
 };
 
 let retrieve = (restaurant, cb) => {
