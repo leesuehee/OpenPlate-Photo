@@ -5,7 +5,7 @@ import Carosel from './components/Carosel.jsx';
 import css from './style.css';
 import $ from 'jquery';
 
-const axios = require('axios')
+const axios = require('axios');
 
 class PhotoModule extends React.Component {
   constructor(props) {
@@ -19,12 +19,10 @@ class PhotoModule extends React.Component {
   }
 
   componentDidMount () {
-    let thiz = this;
-
     console.log(this.props.photos);
     axios.get(`/photos/${this.props.photos}`)
       .then(function(response) {
-        thiz.setState({
+        this.setState({
           dupePhotos: response.data[0].gallery,
           total: response.data[0].gallery.length
         })

@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# Team Mystery Moose OpenTable Photos Module
+# OpenPlate Photos Module
 
 This module is a rendition of the OpenTable website's photos module.  It features a photo gallery that displays an aggregate of photos that are uniquely formated (dependent on the amount of photos submitted by a given restaraunt).
 
@@ -37,6 +36,3 @@ Within the package.json file there will be a script called 'test' that will trig
 ## Authors
 
 * **Suehee Lee** (https://github.com/leesuehee)
-=======
-# OpenPlate-Photo
->>>>>>> 6ec015d8cdcfd0a58c7bc0b940168681347d3e86

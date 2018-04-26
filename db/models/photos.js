@@ -1,14 +1,11 @@
 const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://mongo:27016/photos');// db name
 mongoose.connect('mongodb://localhost/photos');
 
 let photoSchema = mongoose.Schema({
   restaurant_id: Number,
-  src: String,
-  txt_description: String
+  gallery: Array,
 });
-
 
 let PhotoModel = mongoose.model('photos', photoSchema);//'' is collection name
 
