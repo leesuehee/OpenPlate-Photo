@@ -16,12 +16,12 @@ class PhotoModule extends React.Component {
       total: 0,
       current: 0,
     }
-  }
+  };
 
   componentDidMount () {
     let context = this;
 
-    axios.get(`/photos/89`)
+    axios.get(`/photos/55`)
       .then(function(response) {
         context.setState({
           photos: response.data[0].gallery,
@@ -30,13 +30,12 @@ class PhotoModule extends React.Component {
       }).catch(function(error) {
         console.log('axios error', error)
       })
-  }
+  };
 
   handleClick() {
-    this.setState({
-      carousel: !this.state.carousel
-    });
-  }
+    this.setState({carousel: !this.state.carousel});
+  };
+
   onRightClick() {
     if(this.state.current < this.state.total-1) {
       this.state.current++;
@@ -44,7 +43,8 @@ class PhotoModule extends React.Component {
       $(".right").animate({left:"+=400"},200);
       $(".left").animate({left:"+=400"},200);
     }
-  }
+  };
+
   onLeftClick() {
     if(this.state.current > 0) {
       this.state.current--;
@@ -53,8 +53,9 @@ class PhotoModule extends React.Component {
       $(".left").animate({left:"-=400"},200);
     }
   }
-  render() { 
 
+
+  render() { 
     let photomod = 
       <div className = 'photomod'>
         <div className = 'relative'>
@@ -68,22 +69,17 @@ class PhotoModule extends React.Component {
       <div>
         <div className = 'toggle-carousel'>
           <Carousel photos = {this.state.photos}  
+          carousel = {this.handleClick.bind(this)}
           left = {this.onLeftClick.bind(this)} right = {this.onRightClick.bind(this)}
           /> 
-
         </div>
       </div>
 
     return (
       (this.state.carousel)? 
-          <div> 
-            {photomod}
-            {carouselToggled}
-          </div>
-          :
-          <div>
-            {photomod}
-          </div>
+        <div> {photomod}{carouselToggled}</div>
+        :
+        <div>{photomod}</div>
     )
   }
 }

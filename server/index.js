@@ -16,11 +16,10 @@ app.get('/photos/:restaurant_id',(req, res) => {
 
   let promise = new Promise(function(res, reject) {
     db.retrieve(Number(restaurant_id), function(err, data) {
-      res(data)
+      res(data);
     })
   }).then(function(resolved) {
-    console.log('resolved',resolved)
-    res.send(resolved)
+    res.send(resolved);
   })
 })
 

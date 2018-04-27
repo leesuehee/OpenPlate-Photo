@@ -4,11 +4,11 @@ let Handle_five= function(props) {
   let size = '150px';
   let pic = props.pic;
   
-  let styles1 = {position: 'absolute', top:'0px', left:'2px'}
-  let styles2 = {position: 'absolute',top:'152px', left:'0px'}
-  let styles3 = {position: 'absolute',top:'0px', left:'152px'}
-  let styles4 = {position: 'absolute',top: '0px', left:'452px'}
-  let styles5 = {position: 'absolute',top: '152px',left:'450px'}
+  let styles1 = {position: 'absolute', top:'0px'   , left:'4px'}
+  let styles2 = {position: 'absolute', top:'152px' , left:'2px'}
+  let styles3 = {position: 'absolute', top:'0px'   , left:'152px'}
+  let styles4 = {position: 'absolute', top: '0px'  , left:'452px'}
+  let styles5 = {position: 'absolute', top: '152px', left:'450px'}
 
   return (
     <div className = 'photogallery'>
@@ -28,7 +28,7 @@ let Handle_five= function(props) {
 
       <div className = 'photo'>
         <div className = 'pic-wrapper' style = {styles3}>
-          <img className = 'pic' src = {pic[2].src} height = '300px' width = '300px'/>
+          <img className = 'pic' src = {pic[2].src} height = '302px' width = '300px'/>
           <p className = 'text'> {pic[2].txt_description}</p>
         </div>
       </div>
