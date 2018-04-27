@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Container from './components/Container.jsx';
-import Carosel from './components/Carosel.jsx';
+import Carousel from './components/Carousel.jsx';
 import css from './style.css';
 import $ from 'jquery';
 
@@ -11,7 +11,7 @@ class PhotoModule extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      carosel: false,
+      carousel: false,
       photos: [],
       total: 0,
       current: 0,
@@ -21,7 +21,7 @@ class PhotoModule extends React.Component {
   componentDidMount () {
     let context = this;
 
-    axios.get(`/photos/8`)
+    axios.get(`/photos/89`)
       .then(function(response) {
         context.setState({
           photos: response.data[0].gallery,
@@ -34,7 +34,7 @@ class PhotoModule extends React.Component {
 
   handleClick() {
     this.setState({
-      carosel: !this.state.carosel
+      carousel: !this.state.carousel
     });
   }
   onRightClick() {
@@ -60,14 +60,14 @@ class PhotoModule extends React.Component {
         <div className = 'relative'>
           <span className = 'photoheader'>{this.state.total} Photos</span>
           <span className = 'viewmore' onClick = {this.handleClick.bind(this)}>View more</span>
-          <Container photos = {this.state.photos} carosel = {this.handleClick.bind(this)}/>
+          <Container photos = {this.state.photos} carousel = {this.handleClick.bind(this)}/>
         </div>
       </div>
 
-    let caroselToggled = 
+    let carouselToggled = 
       <div>
-        <div className = 'toggle-carosel'>
-          <Carosel photos = {this.state.photos}  
+        <div className = 'toggle-carousel'>
+          <Carousel photos = {this.state.photos}  
           left = {this.onLeftClick.bind(this)} right = {this.onRightClick.bind(this)}
           /> 
 
@@ -75,10 +75,10 @@ class PhotoModule extends React.Component {
       </div>
 
     return (
-      (this.state.carosel)? 
+      (this.state.carousel)? 
           <div> 
             {photomod}
-            {caroselToggled}
+            {carouselToggled}
           </div>
           :
           <div>
@@ -87,6 +87,5 @@ class PhotoModule extends React.Component {
     )
   }
 }
-// export default ReactDOM.render(<PhotoModule photos={restaurantId:1}/>, document.getElementById('app'))
 
 ReactDOM.render(<PhotoModule/>, document.getElementById('app'));

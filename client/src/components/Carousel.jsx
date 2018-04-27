@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Carosel = function(props){
+let Carousel = function(props){
   return (
     <div className = 'outtermost' >  
       <div className = 'slidebinder' >
@@ -28,4 +28,4 @@ let Carosel = function(props){
 }
 
 
-export default Carosel;
+export default Carousel;
