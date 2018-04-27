@@ -16,7 +16,7 @@ let save = (data) => {
 
 let retrieve = (restaurant, cb) => {
   let found = PhotoModel.find({
-    restaurant_Id:restaurant
+    restaurant_id:restaurant
   },cb);
 };
 

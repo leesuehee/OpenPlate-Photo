@@ -12,18 +12,19 @@ class PhotoModule extends React.Component {
     super(props)
     this.state = {
       carosel: false,
-      dupePhotos: [],
+      photos: [],
       total: 0,
       current: 0,
     }
   }
 
   componentDidMount () {
-    console.log(this.props.photos);
-    axios.get(`/photos/${this.props.photos}`)
+    let context = this;
+
+    axios.get(`/photos/8`)
       .then(function(response) {
-        this.setState({
-          dupePhotos: response.data[0].gallery,
+        context.setState({
+          photos: response.data[0].gallery,
           total: response.data[0].gallery.length
         })
       }).catch(function(error) {
@@ -39,49 +40,53 @@ class PhotoModule extends React.Component {
   onRightClick() {
     if(this.state.current < this.state.total-1) {
       this.state.current++;
-      $(".sliderbox").animate({left:"-=600"},200);
-      $(".right").animate({left:"+=600"},200);
-      $(".left").animate({left:"+=600"},200);
+      $(".sliderbox").animate({left:"-=400"},200);
+      $(".right").animate({left:"+=400"},200);
+      $(".left").animate({left:"+=400"},200);
     }
   }
   onLeftClick() {
     if(this.state.current > 0) {
       this.state.current--;
-      $(".sliderbox").animate({left:"+=600"},200);
-      $(".right").animate({left:"-=600"},200);
-      $(".left").animate({left:"-=600"},200);
+      $(".sliderbox").animate({left:"+=400"},200);
+      $(".right").animate({left:"-=400"},200);
+      $(".left").animate({left:"-=400"},200);
     }
   }
   render() { 
-    return (
-      <div>
-        {(this.state.carosel)? 
-          <div>
-            <div className = 'photomod' onClick = {this.handleClick.bind(this)}>
-              <div className = 'relative'>
-                <span className = 'photoheader'>{this.state.total} Photos</span>
-                <span className = 'viewmore' onClick = {this.handleClick.bind(this)}>View more</span>
-                <Container photos = {this.state.dupePhotos}/>
-              </div>
-            </div>
-            <div className = 'toggle-carosel'>
-              <Carosel photos = {this.state.dupePhotos}  
-              left = {this.onLeftClick.bind(this)} right = {this.onRightClick.bind(this)}
-              originState = {this.state}/> 
 
-            </div>
-          </div>
-        :
-          <div className = 'photomod'>
-            <div className = 'relative'>
-              <span className = 'photoheader'>{this.state.total} Photos</span>
-              <span className = 'viewmore' onClick = {this.handleClick.bind(this)}>View more</span>
-              <Container photos = {this.state.dupePhotos} carosel = {this.handleClick.bind(this)}/>
-            </div>
-          </div>}
+    let photomod = 
+      <div className = 'photomod'>
+        <div className = 'relative'>
+          <span className = 'photoheader'>{this.state.total} Photos</span>
+          <span className = 'viewmore' onClick = {this.handleClick.bind(this)}>View more</span>
+          <Container photos = {this.state.photos} carosel = {this.handleClick.bind(this)}/>
+        </div>
       </div>
+
+    let caroselToggled = 
+      <div>
+        <div className = 'toggle-carosel'>
+          <Carosel photos = {this.state.photos}  
+          left = {this.onLeftClick.bind(this)} right = {this.onRightClick.bind(this)}
+          /> 
+
+        </div>
+      </div>
+
+    return (
+      (this.state.carosel)? 
+          <div> 
+            {photomod}
+            {caroselToggled}
+          </div>
+          :
+          <div>
+            {photomod}
+          </div>
     )
   }
 }
-export default ReactDOM.render(<PhotoModule photos={1}/>, document.getElementById('app'))
+// export default ReactDOM.render(<PhotoModule photos={restaurantId:1}/>, document.getElementById('app'))
 
+ReactDOM.render(<PhotoModule/>, document.getElementById('app'));
