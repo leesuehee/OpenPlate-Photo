@@ -10,17 +10,33 @@ let getRandomNum = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+// to deal w/ faker bug of repeated photos and descriptions
+let generatePhotos = function() {
+  let photo = faker.image.food();
+  return photo;
+};
+
+let generateDescription = function() {
+  let description = faker.lorem.words();
+  return description;
+};
+
+
 let createOneGallery = function(num) {
   let photoHolder = [];
+  
   let template = {
     restaurant_id: num,
     gallery: []
   };
+  
+  for (let i = 0; i < getRandomNum(1,10); i++) {
+    let description = generateDescription();
+    let photo = generatePhotos();
 
-  for (let i = 0; i < getRandomNum(1,200); i++) {
     let galleryInput = {
-      txt_description: faker.lorem.words(),
-      src: faker.image.food()
+      txt_description: description,
+      src: photo
     }
     template.gallery.push(galleryInput);
   };
